@@ -1,0 +1,62 @@
+nav {
+  width: 200px;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  background-color: black;
+  border-radius: 10px;
+  color: white;
+}
+
+nav ul {
+  position: relative;
+  list-style-type: none;
+}
+
+nav ul li a {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  font-family: arial;
+  font-size: 1.15rem;
+  text-decoration: none;
+  text-transform: capitalize;
+  color: white;
+  height: 50px;
+  -webkit-transition: .5s ease;
+  transition: .5s ease;
+  border-radius: 0 30px;
+  text-align: center;
+}
+
+nav ul li a:hover {
+  background-color: blue;
+  color: #fff;
+}
+
+nav ul ul {
+  position: absolute;
+  left: 100px;
+  width: 200px;
+  top: 0;
+  display: none;
+  background: black;
+  border-radius: 5px;
+}
+
+nav ul .dropdown {
+  position: relative;
+}
+
+nav ul .dropdown:hover ul {
+  display: initial;
+  left: 160px;
+  top: 0;
+  width: 200px;
+  height: 200px;
+}
+
+nav h3 {
+  text-align: center;
+}
+/*# sourceMappingURL=app.component.css.map */

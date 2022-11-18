@@ -1,0 +1,105 @@
+<div class="container">
+  <div class="grid">
+    <div class="col-6 m-auto flex justify-content-center">
+      <h1>Track Vehicle</h1>
+    </div>
+    <div class="text-end" style="margin-top: 12px;">
+      <button  type="button" class="btn btn-lg btn-outline-primary toggle_button" (click)="openEnd(content)"><i class='fas fa-hamburger'></i></button>
+    </div>
+  </div>
+
+  <div class="grid">
+    <div class="col-10 flex justify-content-center m-auto">
+      <agm-map [fitBounds]="true" [maxZoom]="16">
+        <agm-map-type-control></agm-map-type-control>
+
+        <ng-container *ngFor="let vehicleInfo of vehiclesList">
+          <agm-direction
+            [origin]="vehicleInfo.source"
+            [destination]="vehicleInfo.destination"
+            [renderOptions]="vehicleInfo.renderOptions"
+            [markerOptions]="vehicleInfo.markerOption"
+          >
+          </agm-direction>
+          <agm-marker
+            [latitude]="vehicleInfo.currentLocation.lat"
+            [longitude]="vehicleInfo.currentLocation.lng"
+            [iconUrl]="vehicleInfo.icon"
+          >
+            <agm-info-window #infoWindow>
+              <div>
+                <p>Latitude: {{ vehicleInfo.currentLocation?.lat }}</p>
+                <p>Longitude: {{ vehicleInfo.currentLocation?.lng }}</p>
+                <p>
+                  Speed Over Ground:
+                  {{ vehicleInfo.currentLocation?.speedOverGround }}
+                </p>
+                <p>
+                  Order Id:
+                  {{ vehicleInfo.orderId }}
+                </p>
+              </div>
+            </agm-info-window>
+          </agm-marker>
+        </ng-container>
+      </agm-map>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+<ng-template #content let-offcanvas>
+  <div style="color: white; background-color: black;">
+    <div class="offcanvas-header">
+      <h4 class="offcanvas-title">Tracking Devices</h4>
+      <button style="color: white; font-size: 25px;padding: 2px 2px 15px 2px;" type="button" class="btn-close" aria-label="Close" (click)="offcanvas.dismiss('Cross click')">x</button>
+    </div>
+
+    <!-- Search -->
+    <form novalidate (ngSubmit)="onSubmit(myform)" #myform="ngForm">
+      <div>
+        <input placeholder="Enter Device ID" class="form-control search-input" name="device_id" #device_id="ngModel"
+        [(ngModel)]="search_device_Id" type="search">
+        <button  type="submit" class="btn btn-primary mt-3 search-button" >Search</button>
+      </div>
+    </form>
+    <!-- Search -->
+
+    <ul *ngFor="let vehicleInfo of vehiclesList | filter:search_device_Id" class="nav nav-tabs mt-5">
+
+      <li class="nav-item dropdown">
+          <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
+            <i class="fas fa-truck"></i>&nbsp;Device Id:
+            {{ vehicleInfo.orderId }}</a>
+          <div class="dropdown-menu">
+            <ul style="text-decoration: none; list-style: none;padding: 20px;">
+              <li style="text-decoration: none;"><a href="#" style="color:black;text-decoration: none;"><i class="fa fa-map-marker" style="color:black; padding-right: 15px;"></i>Latitude: {{ vehicleInfo.currentLocation?.lat }}</a></li>
+              <li style="text-decoration: none;"><a href="#" style="color:black;text-decoration: none;"><i class="fa fa-map-marker" style="color:black; padding-right: 15px;"></i>Longitude: {{ vehicleInfo.currentLocation?.lng }}</a></li>
+              <li style="text-decoration: none;"><a href="#" style="color:black;text-decoration: none;"><i class="fas fa-tachometer-alt" style="color:black; padding-right: 15px;"></i>Speed Over Ground:
+                {{ vehicleInfo.currentLocation?.speedOverGround }}</a></li>
+            </ul>
+              <div class="dropdown-divider"></div>
+          </div>
+      </li>
+    </ul>
+
+  </div>
+</ng-template>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

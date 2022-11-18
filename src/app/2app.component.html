@@ -1,0 +1,72 @@
+<div class="container">
+  <div class="grid">
+    <div class="col-6 m-auto flex justify-content-center">
+      <h1>Track Vehicle</h1>
+    </div>
+  </div>
+  <div class="grid">
+    <div class="col-10 flex justify-content-center m-auto">
+      <agm-map [fitBounds]="true" [maxZoom]="20">
+        <agm-map-type-control></agm-map-type-control>
+        <!-- <ng-container *ngFor="let vehicleInfo of vehiclesInformation">
+          <ng-container *ngFor="let vehicle of vehicleInfo">
+            <agm-marker (mouseOver)="hoveredInfoWindow = vehicle" [latitude]="vehicle.latitude" [longitude]="vehicle.longitude"
+                        (mouseOut)="hoveredInfoWindow = null"
+                        [iconUrl]="'assets/1.png'"
+                        [agmFitBounds]="true">
+              <agm-info-window #infoWindow>
+                <div>
+                  <p>Latitude: {{vehicle?.latitude}}</p>
+                  <p>Longitude: {{vehicle?.longitude}}</p>
+                  <p>Speed Over Ground: {{vehicle?.speedOverGround}}</p>
+                  <p>Coordinate No: {{vehicle?.coordinateNo}}</p>
+                </div>
+              </agm-info-window>
+            </agm-marker>
+          </ng-container> 
+          <ng-container *ngFor="let vehicle of vehiclesStartingPoints; let i = index">
+            <agm-marker [latitude]="vehicle.latitude" [longitude]="vehicle.longitude"
+
+                        [iconUrl]="getMarker1(i)"
+                        [agmFitBounds]="true">
+              <agm-info-window #infoWindow>
+                <div>
+                  <p>Latitude: {{vehicle?.latitude}}</p>
+                  <p>Longitude: {{vehicle?.longitude}}</p>
+                  <p>Speed Over Ground: {{vehicle?.speedOverGround}}</p>
+                  <p>Coordinate No: {{vehicle?.coordinateNo}}</p>
+                </div>
+              </agm-info-window>
+            </agm-marker>
+          </ng-container> 
+          <ng-container *ngFor="let vehicle of vehiclesEndingPoints; let i = index;">
+            <agm-marker [latitude]="vehicle.latitude" [longitude]="vehicle.longitude"
+
+                        [iconUrl]="getMarker2(i)"
+                        [agmFitBounds]="true">
+              <agm-info-window #infoWindow>
+                <div>
+                  <p>Latitude: {{vehicle?.latitude}}</p>
+                  <p>Longitude: {{vehicle?.longitude}}</p>
+                  <p>Speed Over Ground: {{vehicle?.speedOverGround}}</p>
+                  <p>Coordinate No: {{vehicle?.coordinateNo}}</p>
+                </div>
+              </agm-info-window>
+            </agm-marker>
+          </ng-container>
+        </ng-container> -->
+        <!-- <ng-container *ngFor="let lineData of lines; let i = index">
+          <agm-polyline [editable]="true" [strokeColor]="getColor(i)">
+            <agm-polyline-point
+              *ngFor="let line of lineData"
+              [latitude]="line.latitude"
+              [longitude]="line.longitude"
+              [agmFitBounds]="true"
+            >
+            </agm-polyline-point>
+          </agm-polyline>
+        </ng-container> -->
+      </agm-map>
+    </div>
+  </div>
+</div>
